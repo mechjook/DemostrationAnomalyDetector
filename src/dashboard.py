@@ -327,12 +327,12 @@ def _build_html(chart_data_json: str) -> str:
     }}
     .grid-2 {{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(400px,100%), 1fr));
       gap: 1.5rem;
     }}
     .grid-3 {{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr));
       gap: 1.5rem;
     }}
 
@@ -432,7 +432,7 @@ def _build_html(chart_data_json: str) -> str:
       background: var(--bg-primary); border: 1px solid var(--border-color);
       border-radius: 8px; padding: 8px 14px;
       color: var(--text-primary); font-size: 0.85rem;
-      min-width: 250px; outline: none;
+      min-width: min(250px,100%); outline: none;
     }}
     .search-input:focus {{ border-color: var(--accent-blue); }}
     .filter-btn {{
@@ -555,6 +555,36 @@ def _build_html(chart_data_json: str) -> str:
       color: var(--text-muted); font-size: 0.78rem;
       margin-top: -0.5rem; margin-bottom: 0.8rem;
       line-height: 1.5;
+    }}
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {{
+      .navbar {{ padding: 0 1rem; flex-wrap: wrap; height: auto; min-height: 56px; padding-top: 0.5rem; padding-bottom: 0.5rem; }}
+      .navbar-brand {{ font-size: 0.95rem; }}
+      .nav-links {{ order: 3; width: 100%; padding-bottom: 0.25rem; }}
+      .nav-links a {{ padding: 4px 10px; font-size: 0.78rem; }}
+      .status-badge {{ display: none; }}
+      .container {{ padding: 90px 1rem 2rem; }}
+      .hero {{ padding: 1.5rem; }}
+      .hero h1 {{ font-size: 1.3rem; line-height: 1.3; }}
+      .hero .subtitle {{ font-size: 0.85rem; }}
+      .section-title {{ font-size: 1.1rem; }}
+      .section-desc {{ font-size: 0.82rem; }}
+      .grid-4 {{ grid-template-columns: 1fr 1fr; }}
+      .kpi-value {{ font-size: 1.4rem; }}
+      .kpi-card {{ padding: 1rem; }}
+      .chart-card {{ padding: 1rem; }}
+      .chart-card h3 {{ font-size: 0.9rem; }}
+      .heatmap-grid {{ font-size: 0.6rem; gap: 1px; }}
+      .data-table th, .data-table td {{ padding: 6px 8px; }}
+      footer {{ padding: 1.5rem 1rem; }}
+    }}
+    @media(max-width:480px) {{
+      .grid-4 {{ grid-template-columns: 1fr; }}
+      .hero h1 {{ font-size: 1.1rem; }}
+      .kpi-value {{ font-size: 1.2rem; }}
+      .heatmap-grid {{ grid-template-columns: 30px repeat(7, 1fr); }}
+      .pipeline-step {{ font-size: 0.7rem; padding: 4px 10px; }}
     }}
   </style>
 </head>
